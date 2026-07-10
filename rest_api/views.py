@@ -5,6 +5,8 @@ from rest_api.models import Book
 from rest_api.serializers import BookSerializer
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
+
 # Create your views here.
 
 class BookView(APIView):
@@ -19,8 +21,13 @@ class BookView(APIView):
             books = Book.objects.filter(price=price)
         else:
             books = Book.objects.all()
-        serializer = BookSerializer(books, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        paginator = PageNumberPagination()
+        paginator.page_size = 2
+        page = paginator.paginate_queryset(books, request=request)
+
+        serializer = BookSerializer(page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     def post(self, request):
         serializer = BookSerializer(data = request.data)
@@ -31,6 +38,7 @@ class BookView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class BookDetailView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, pk):
         try:
             book = Book.objects.get(pk=pk)
