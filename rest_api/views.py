@@ -6,11 +6,12 @@ from rest_api.serializers import BookSerializer
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
-
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 # Create your views here.
 
 class BookView(APIView):
     permission_classes = [IsAuthenticated]
+    throttle_classes = [UserRateThrottle, AnonRateThrottle]
     def get(self, request):
         params = self.request.query_params
         title = params.get('title')

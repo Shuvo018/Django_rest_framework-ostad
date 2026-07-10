@@ -75,7 +75,11 @@ WSGI_APPLICATION = 'rest_framework_demo.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/day',
+        'user': '5/day'
+    }
 }
 
 # Database
