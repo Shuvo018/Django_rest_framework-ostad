@@ -1,6 +1,20 @@
 # Django_rest_framework-ostad
 
 
+### 3. Book APIs
+
+Create the following APIs using `ModelViewSet`.
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **GET** | `/api/books/` | Retrieve all books |
+| **POST** | `/api/books/` | Create a new book |
+| **GET** | `/api/books/<id>/` | Retrieve a single book |
+| **PUT** | `/api/books/<id>/` | Update a book |
+| **PATCH** | `/api/books/<id>/` | Partially update a book |
+| **DELETE** | `/api/books/<id>/` | Delete a book |
+
+
 ## Setup & Run
 
 ### Prerequisites
