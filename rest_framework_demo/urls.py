@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from rest_api.views import BookView, BookDetailView
+from rest_api.views import BookView, BookDetailView, RegisterView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -29,7 +29,9 @@ urlpatterns = [
     path('api/books/', BookView.as_view()),
     path('api/books/<int:pk>', BookDetailView.as_view()),
     
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/register/', RegisterView.as_view(), name='auth_register'),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
    
 ]
