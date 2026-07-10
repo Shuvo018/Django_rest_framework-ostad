@@ -15,13 +15,21 @@ class BookView(APIView):
         params = self.request.query_params
         title = params.get('title')
         price = params.get('price')
+        order_by = params.get('order_by')
+
         if title:
             books = Book.objects.filter(title=title)
         elif price:
             books = Book.objects.filter(price=price)
+        elif order_by:
+            books = Book.objects.all().order_by(order_by)
+
         else:
             books = Book.objects.all()
         
+
+        
+
         paginator = PageNumberPagination()
         paginator.page_size = 2
         page = paginator.paginate_queryset(books, request=request)
