@@ -1,10 +1,13 @@
 # Django_rest_framework-ostad
 
+### 2. Book Model
+● Title
+● Author
+● Price
+● Published Date
 
 ### 3. Book APIs
-
-Create the following APIs using `ModelViewSet`.
-
+APIs using `ModelViewSet`.
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | **GET** | `/api/books/` | Retrieve all books |
