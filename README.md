@@ -1,5 +1,12 @@
 # Django_rest_framework-ostad
 
+### 1. Authentication
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **POST** | `/api/register/` | Register a new user |
+| **POST** | `/api/login/` | Login and obtain an authentication token |
+
+
 ### 2. Book Model
 ● Title
 ● Author
@@ -16,6 +23,34 @@ APIs using `ModelViewSet`.
 | **PUT** | `/api/books/<id>/` | Update a book |
 | **PATCH** | `/api/books/<id>/` | Partially update a book |
 | **DELETE** | `/api/books/<id>/` | Delete a book |
+
+### 4. Filtering, Searching & Ordering
+
+#### Filter by Author
+
+GET /api/books/?author=J.K. Rowling
+
+#### Search by Title
+
+GET /api/books/?search=Harry
+
+####  Order by Price
+
+GET /api/books/?ordering=price
+
+GET /api/books/?ordering=-pric
+
+### 5. Pagination
+
+GET /api/books/?page=2
+
+### 6. Throttling
+
+Configure throttling as follows:
+
+● Anonymous Users: 20 requests per minute
+
+● Authenticated Users: 50 requests per minute
 
 
 ## Setup & Run
