@@ -4,11 +4,21 @@ from rest_framework.response import Response
 from rest_api.models import Book
 from rest_api.serializers import BookSerializer
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class BookView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
-        books = Book.objects.all()
+        params = self.request.query_params
+        title = params.get('title')
+        price = params.get('price')
+        if title:
+            books = Book.objects.filter(title=title)
+        elif price:
+            books = Book.objects.filter(price=price)
+        else:
+            books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

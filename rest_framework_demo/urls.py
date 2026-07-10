@@ -19,8 +19,17 @@ from django.urls import path
 
 from rest_api.views import BookView, BookDetailView
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/books/', BookView.as_view()),
     path('api/books/<int:pk>', BookDetailView.as_view()),
+    
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+   
 ]
